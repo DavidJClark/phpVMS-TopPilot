@@ -2,9 +2,13 @@ TOPPilot beta 1.0
 
 phpVMS module to extract monthly flight statistics for individual pilots from your phpVMS based virtual airline.
 
+Released under the following license:
+Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License
+
 Developed by:
-simpilot
+simpilot - David Clark
 www.simpilotgroup.com
+www.david-clark.net
 
 Developed on:
  phpVMS 2.0.874
@@ -48,15 +52,15 @@ Flights flown - TopPilotData::top_pilot_flights($month, $year, 5)
 Hours flown -  TopPilotData::top_pilot_hours($month, $year, 5)
 Miles flown - TopPilotData::top_pilot_miles($month, $year, 5)
 
-$month should be the two digit month id of the month you want data from – ie 06 = June
-$year is the four digit year you are pulling – ie 2010
-5 – can be changed to how many records you want returned.
+$month should be the two digit month id of the month you want data from ï¿½ ie 06 = June
+$year is the four digit year you are pulling - ie 2010
+5 can be changed to how many records you want returned.
 
 Excluding PIREPS that are not accepted yet.
 
 TopPilot.php line 52.
 
-Uncomment the trailing section and the module will not include unapproved PIREPS. Doing this will cause the module not to display any newly accepted PIREPS in the TopPilot data listings until after another PIREP is filed  although you can refresh the stats at anytime using – yoursite/index.php/TopPilot/refresh_pilot_stats
+Uncomment the trailing section and the module will not include unapproved PIREPS. Doing this will cause the module not to display any newly accepted PIREPS in the TopPilot data listings until after another PIREP is filed  although you can refresh the stats at anytime using ï¿½ yoursite/index.php/TopPilot/refresh_pilot_stats
 
 Although this script carries no limits of use a link back to www.simpilotgroup.com would be greatly appreciated!
 
