@@ -12,7 +12,7 @@
 class TopPilotData extends CodonData
 {
     public function get_monthly_stats($month, $year) {
-        $query = "SELECT * FROM phpvms_pireps WHERE MONTH(submitdate) = '$month' AND YEAR(submitdate) = '$year'";
+        $query = "SELECT * FROM ".TABLE_PREFIX."pireps WHERE MONTH(submitdate) = '$month' AND YEAR(submitdate) = '$year'";
 
         return DB::get_results($query);
     }
