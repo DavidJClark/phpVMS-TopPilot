@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `top_flights` (
+CREATE TABLE IF NOT EXISTS `phpvms_top_flights` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pilot_id` int(4) NOT NULL,
   `flights` int(4) NOT NULL,

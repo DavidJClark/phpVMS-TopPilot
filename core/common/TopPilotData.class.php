@@ -18,44 +18,44 @@ class TopPilotData extends CodonData
     }
 
     public function record_stats($pilot_id, $totalflights, $totaltime, $totalmiles, $startmonth, $startyear) {
-        $query = "INSERT INTO top_flights (pilot_id, flights, hours, miles, month, year)
+        $query = "INSERT INTO ".TABLE_PREFIX."top_flights (pilot_id, flights, hours, miles, month, year)
                 VALUES('$pilot_id', '$totalflights', '$totaltime', '$totalmiles', '$startmonth', '$startyear')";
 
         DB::query($query);
     }
 
     public function clear_table()   {
-        $query = "TRUNCATE TABLE top_flights";
+        $query = "TRUNCATE TABLE ".TABLE_PREFIX."top_flights";
 
         DB::query($query);
     }
 
     public function top_pilot_flights($month, $year, $howmany)    {
-        $query = "SELECT * FROM top_flights WHERE month='$month' AND year='$year' ORDER BY flights DESC LIMIT $howmany";
+        $query = "SELECT * FROM ".TABLE_PREFIX."top_flights WHERE month='$month' AND year='$year' ORDER BY flights DESC LIMIT $howmany";
 
         return DB::get_results($query);
     }
 
     public function top_pilot_hours($month, $year, $howmany)    {
-        $query = "SELECT * FROM top_flights WHERE month='$month' AND year='$year' ORDER BY hours DESC LIMIT $howmany";
+        $query = "SELECT * FROM ".TABLE_PREFIX."top_flights WHERE month='$month' AND year='$year' ORDER BY hours DESC LIMIT $howmany";
 
         return DB::get_results($query);
     }
 
     public function top_pilot_miles($month, $year, $howmany)    {
-        $query = "SELECT * FROM top_flights WHERE month='$month' AND year='$year' ORDER BY miles DESC LIMIT $howmany";
+        $query = "SELECT * FROM ".TABLE_PREFIX."top_flights WHERE month='$month' AND year='$year' ORDER BY miles DESC LIMIT $howmany";
 
         return DB::get_results($query);
     }
 
     public function alltime_flights ($howmany)  {
-        $query = "SELECT pilotid, totalflights FROM phpvms_pilots ORDER BY totalflights DESC LIMIT $howmany";
+        $query = "SELECT pilotid, totalflights FROM ".TABLE_PREFIX."pilots ORDER BY totalflights DESC LIMIT $howmany";
 
         return DB::get_results($query);
     }
 
     public function alltime_hours ($howmany)  {
-        $query = "SELECT pilotid, totalhours FROM phpvms_pilots ORDER BY totalhours DESC LIMIT $howmany";
+        $query = "SELECT pilotid, totalhours FROM ".TABLE_PREFIX."pilots ORDER BY totalhours DESC LIMIT $howmany";
 
         return DB::get_results($query);
     }
