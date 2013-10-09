@@ -32,7 +32,7 @@ class TopPilot extends CodonModule {
         $this->set('startmonth', date('m', strtotime($start->submitdate)));
         $this->set('startyear', date('Y', strtotime($start->submitdate)));
         $this->set('today', getdate());
-        $this->render('tp_index.tpl');
+        $this->render('toppilot/tp_index');
         }
     }
 
@@ -81,6 +81,6 @@ class TopPilot extends CodonModule {
         $this->set('topflights', TopPilotData::top_pilot_flights($month, $year, 5));
         $this->set('tophours',  TopPilotData::top_pilot_hours($month, $year, 5));
         $this->set('topmiles',  TopPilotData::top_pilot_miles($month, $year, 5));
-        $this->render('tp_previous.tpl');
+        $this->render('toppilot/tp_previous');
     }
 }
