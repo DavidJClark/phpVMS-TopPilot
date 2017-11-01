@@ -17,7 +17,7 @@
  */
 
 class TopPilot extends CodonModule {
-    public static $tour_center = 1; // 0:if no tour system -or- 1:for SimpilotGroup Tour Center -or- 2:for CrazyCreatives Tour Module
+    public static $tour_center = 0; // 0:if no tour system -or- 1:for SimpilotGroup Tour Center -or- 2:for CrazyCreatives Tour Module
     public $title = 'Top Pilots';
 
     public function __construct() {
