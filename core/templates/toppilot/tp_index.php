@@ -198,9 +198,13 @@
                 <td valign="top" align="center"><b>Select Month:</b></td>
                 <td><select name="date" onchange="this.form.submit()">
                         <?php
-                        $month = $today[mon];
+                        $month = $today[mon]-1;
                         $year = $today[year];
                         while($year >= $startyear): {
+                            if($month <= 0) {
+                                $month = 12;
+                                $year--;
+                            }
                             $month_name = date( 'F', mktime(0, 0, 0, $month) );
                             ?>
                             <option value="<?php echo $year.'-'.$month; ?>"><?php echo $month_name.' - '.$year; ?></option>
