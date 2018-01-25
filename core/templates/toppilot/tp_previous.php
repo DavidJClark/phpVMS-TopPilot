@@ -1,95 +1,146 @@
 <?php
-//simpilotgroup addon module for phpVMS virtual airline system
-//
-//simpilotgroup addon modules are licenced under the following license:
-//Creative Commons Attribution Non-commercial Share Alike (by-nc-sa)
-//To view full icense text visit http://creativecommons.org/licenses/by-nc-sa/3.0/
-//
-//@author David Clark (simpilot)
-//@copyright Copyright (c) 2009-2010, David Clark
-//@license http://creativecommons.org/licenses/by-nc-sa/3.0/
+/**
+ * PHP-Mods Addon Module for phpVMS virtual airline syste,
+ * The module was originally developed by simpilotgroup
+ *
+ * The module is licenced under the following license:
+ * Creative Commons Attribution Non-commercial Share Alike (by-nc-sa)
+ * To view full license text visit http://creativecommons.org/licenses/by-nc-sa/3.0/
+ *
+ * @Initial Developer David Clark (simpilot)
+ * @copyright Copyright (c) 2009-2017, David Clark
+ * @license http://creativecommons.org/licenses/by-nc-sa/3.0/
+ * @link https://github.com/DavidJClark/phpVMS-TopPilot
+ *
+ * The module has been updated by PHP-Mods on 31st of October 2017
+ * @link https://github.com/phpmods/phpVMS-TopPilot
+ */
 
 //old month stats
 $month_name = date( 'F', mktime(0, 0, 0, $month) );
-echo '<h4>'.$month_name.' '.$year.' Stats</h4>';
-if(!$topflights)
-{echo 'No flights filed'; }
-else
-{
-echo '<table width="100%" cellpadding="10px"><tr><td width="33%" valign="top">';
-echo '<center>';
-
-//$topflights = TopPilotData::top_pilot_flights($today[mon], $today[year], 5);
-
-    $month_name = date( 'F', mktime(0, 0, 0, $topflights[0]->month) );
-
-    echo '<b>Top Pilot for '.$month_name.' '.$topflights[0]->year.' </b>(Flights Flown)';
-
-    echo '<table class="profiletop">';
-
-    echo '<tr>';
-    echo '<td>Pilot</td>';
-    echo '<td>Flights Flown</td>';
-    echo '</tr>';
-
-    foreach ($topflights as $top) {
-        $pilot = PilotData::GetPilotData($top->pilot_id);
-        echo '<tr>';
-        echo '<td>'.$pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid).'</td>';
-        echo '<td>'.$top->flights.'</td>';
-        echo '</tr>';
-    }
-
-    echo '</table>';
-    echo '</center>';
-
-    echo '</td><td width="33%" valign="top">';
-    echo '<center>';
-
-    //top hours flown
-
-   // $tophours = TopPilotData::top_pilot_hours($today[mon], $today[year], 5);
-
-    echo '<b>Top Pilot for '.$month_name.' '.$tophours[0]->year.' </b>(Hours Flown)';
-    echo '<table class="profiletop">';
-    echo '<tr>';
-    echo '<td>Pilot</td>';
-    echo '<td>Hours Flown</td>';
-    echo '</tr>';
-    foreach ($tophours as $top) {
-        $pilot = PilotData::GetPilotData($top->pilot_id);
-        echo '<tr>';
-        echo '<td>'.$pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid).'</td>';
-        echo '<td>'.$top->hours.'</td>';
-        echo '</tr>';
-    }
-    echo '</table>';
-    echo '</center>';
-    echo '</td><td width="33%" valign="top">';
-    echo '<center>';
-
-    //top miles flown
-
-    //$topmiles = TopPilotData::top_pilot_miles($today[mon], $today[year], 5);
-
-    echo '<b>Top Pilot for '.$month_name.' '.$tophours[0]->year.' </b>(Miles Flown)';
-    echo '<table class="profiletop">';
-    echo '<tr>';
-    echo '<td>Pilot</td>';
-    echo '<td>Miles Flown</td>';
-    echo '</tr>';
-    foreach ($topmiles as $top) {
-        $pilot = PilotData::GetPilotData($top->pilot_id);
-        echo '<tr>';
-        echo '<td>'.$pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid).'</td>';
-        echo '<td>'.$top->miles.'</td>';
-        echo '</tr>';
-    }
-    echo '</table>';
-    echo '</center>';
-    echo '</td></tr></table>';
-}
-    echo '<hr>';
-    echo '<form method="link" action="'.url('TopPilot').'">
-        <input class="mail" type="submit" value="Current Month"></form>';
 ?>
+<h4><?php echo $month_name.' '.$year; ?> Stats</h4>
+<?php if(!$topflights) {echo 'No flights filed'; }
+else
+{ ?>
+    <table width="100%" cellpadding="10px">
+        <tr>
+            <td width="33%" valign="top">
+                <center>
+                    <b>Top Pilot for <?php echo $month_name.' '.$topflights[0]->year; ?> </b>(Flights Flown)
+                    <table class="profiletop">
+                        <tr>
+                            <th>Pilot</th>
+                            <th>Flights Flown</th>
+                        </tr>
+                        <?php foreach ($topflights as $top) {
+                            $pilot = PilotData::GetPilotData($top->pilot_id); ?>
+                            <tr>
+                                <td><?php echo $pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid); ?></td>
+                                <td><?php echo $top->flights; ?></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </center>
+            </td>
+            <td width="33%" valign="top">
+                <center>
+                    <b>Top Pilot for <?php echo $month_name.' '.$tophours[0]->year; ?> </b>(Hours Flown)
+                    <table class="profiletop">
+                        <tr>
+                            <th>Pilot</th>
+                            <th>Hours Flown</th>
+                        </tr>
+                        <?php foreach ($tophours as $top) {
+                            $pilot = PilotData::GetPilotData($top->pilot_id); ?>
+                            <tr>
+                                <td><?php echo $pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid); ?></td>
+                                <td><?php echo $top->hours; ?></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </center>
+            </td>
+            <td width="33%" valign="top">
+                <center>
+                    <b>Top Pilot for <?php echo $month_name.' '.$tophours[0]->year; ?> </b>(Miles Flown)
+                    <table class="profiletop">
+                        <tr>
+                            <th>Pilot</th>
+                            <th>Miles Flown</th>
+                        </tr>
+                        <?php foreach ($topmiles as $top) {
+                            $pilot = PilotData::GetPilotData($top->pilot_id); ?>
+                            <tr>
+                                <td><?php echo $pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid); ?></td>
+                                <td><?php echo $top->miles; ?></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td width="33%" valign="top">
+                <center>
+                    <b>Top Pilot for <?php echo $month_name.' '.$tophours[0]->year; ?> </b>(Awards Received)
+                    <table class="profiletop">
+                        <tr>
+                            <th>Pilot</th>
+                            <th>Awards Received</th>
+                        </tr>
+                        <?php foreach ($topawards as $top) {
+                            $pilot = PilotData::GetPilotData($top->pilot_id); ?>
+                            <tr>
+                                <td><?php echo $pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid); ?></td>
+                                <td><?php echo $top->awards; ?></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </center>
+            </td>
+            <td width="33%" valign="top">
+                <center>
+                    <b>Top Pilot for <?php echo $month_name.' '.$tophours[0]->year; ?> </b>(Landing Rates)
+                    <table class="profiletop">
+                        <tr>
+                            <th>Pilot</th>
+                            <th>Landing</th>
+                        </tr>
+                        <?php foreach ($toplanding as $top) {
+                            $pilot = PilotData::GetPilotData($top->pilot_id); ?>
+                            <tr>
+                                <td><?php echo $pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid); ?></td>
+                                <td><?php echo $top->landing; ?> <i>ft/min</i></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </center>
+            </td>
+            <td width="33%" valign="top">
+                <?php if($tour_center) { ?>
+                    <center>
+                        <b>Top Pilot for <?php echo $month_name.' '.$tophours[0]->year; ?> </b>(Tours Completed)
+                        <table class="profiletop">
+                            <tr>
+                                <th>Pilot</th>
+                                <th>Tours Completed</th>
+                            </tr>
+                            <?php foreach ($toptours as $top) {
+                                $pilot = PilotData::GetPilotData($top->pilot_id); ?>
+                                <tr>
+                                    <td><?php echo $pilot->firstname.' '.$pilot->lastname.' - '.PilotData::GetPilotCode($pilot->code, $pilot->pilotid); ?></td>
+                                    <td><?php echo $top->tours; ?></td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                    </center>
+                <?php } ?>
+            </td>
+        </tr>
+    </table>
+<?php } ?>
+<hr>
+<form method="link" action="<?php echo url('TopPilot'); ?>">
+    <p align="center"><input type="submit" value="Current Month"></p>
+</form>
