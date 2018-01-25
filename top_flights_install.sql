@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `phpvms_top_flights` (
   `hours` mediumint(5) unsigned NOT NULL,
   `miles` mediumint(7) unsigned NOT NULL DEFAULT '0',
   `awards` mediumint(7) unsigned NOT NULL,
-  `landing` mediumint(7) unsigned NOT NULL,
+  `landing` mediumint(7) NOT NULL,
   `tours` mediumint(7) unsigned NOT NULL,
   `month` tinyint(2) unsigned NOT NULL,
   `year` smallint(4) unsigned NOT NULL,
